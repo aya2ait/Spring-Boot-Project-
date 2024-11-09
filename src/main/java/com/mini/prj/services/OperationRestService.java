@@ -2,12 +2,15 @@ package com.mini.prj.services;
 
 
 import com.mini.prj.entities.Client;
+import com.mini.prj.entities.Compte;
 import com.mini.prj.entities.Operation;
+import com.mini.prj.entities.Retrait;
 import com.mini.prj.metier.OperationMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -39,4 +42,22 @@ public class OperationRestService {
     public Operation updateOperation(@PathVariable("id") Long id, @RequestParam("montant") Double montant) {
         return operationMetier.updateOperation(id,montant);
     }
+
+    //la methode retrait
+
+    @PostMapping("/retirer")
+    public String effectuerRetrait(@RequestBody String codeCompte, @RequestParam Double montant) {
+        // Call the service method to perform the withdrawal
+        return operationMetier.effeffectuerRetrait(codeCompte, montant);
+    }
+
+    @PostMapping("/verser")
+    public String effectuerVersement(@RequestBody Map<String, Object> requestBody) {
+        String codeCompte = (String) requestBody.get("codeCompte");
+        Double montant = (Double) requestBody.get("montant");
+
+        // Call the service method
+        return operationMetier.effeffectuerVersement(codeCompte, montant);
+    }
+
 }
