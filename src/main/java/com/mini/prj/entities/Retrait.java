@@ -13,4 +13,10 @@ public class Retrait extends Operation{
     public Retrait(Date dateOperation, double montant) {
         super(dateOperation, montant);
     }
+
+
+    public void Retrai(int id){
+
+    }
 }
+
